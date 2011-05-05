@@ -1,1 +1,1 @@
-= mog - A Minimalistic blOg enGine
+= mog - a Minimalistic blOg enGine
