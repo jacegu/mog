@@ -1,7 +1,10 @@
 source :rubygems
 
 gem 'sinatra'
-gem 'heroku'
+
+group :development do
+  gem 'heroku'
+end
 
 group :test do
   gem 'rspec'
