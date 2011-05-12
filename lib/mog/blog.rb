@@ -1,7 +1,7 @@
 module Mog
-  class Blog < Sinatra::Application
-    get '/' do
-      'works'
+  class Blog
+    def configure
+      @config ||= Configuration.new
     end
   end
 end
