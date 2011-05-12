@@ -1,7 +1,8 @@
 module Mog
   class Blog
-    def configure
-      @config ||= Configuration.new
+    attr_reader :config
+    def initialize(configuration)
+      @config = configuration
     end
   end
 end
