@@ -6,7 +6,7 @@ module Mog
     end
 
     def self.configure
-      yield @@config
+      yield config
     end
 
     get '/' do

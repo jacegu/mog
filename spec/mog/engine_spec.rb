@@ -24,7 +24,8 @@ module Mog
 
       describe '#configure' do
         it 'yields the configuration' do
-          the_configuration = Engine.config
+          the_configuration = double(:configuration)
+          Engine.stub(:config).and_return(the_configuration)
           Engine.configure{ |c| @yielded_config = c }
           @yielded_config.should be(the_configuration)
         end
