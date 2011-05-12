@@ -14,14 +14,11 @@ module Mog
       end
 
       context 'if it has already been configured' do
-        before do
-          Configuration.should_receive(:new).once.and_return(the_configuration)
-          @blog = Blog.new
-          @blog.configure
-        end
-
         it 'returns the existing configuration' do
-          @blog.configure.should be the_configuration
+          Configuration.should_receive(:new).once.and_return(the_configuration)
+          blog = Blog.new
+          blog.configure
+          blog.configure.should be the_configuration
         end
       end
     end
