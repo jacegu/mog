@@ -10,7 +10,8 @@ module Mog
     end
 
     get '/' do
-      'works'
+      @blog = Blog.new(@@config)
+      "#{@blog.name} by #{@blog.author}"
     end
   end
 end
