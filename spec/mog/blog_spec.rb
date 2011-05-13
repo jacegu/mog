@@ -5,7 +5,7 @@ module Mog
     it 'is created with a configuration' do
       configuration = Configuration.new
       blog = Blog.new(configuration)
-      blog.config.should_not be_nil
+      blog.config.should be(configuration)
     end
 
     it 'can provide configuration values' do
@@ -15,5 +15,6 @@ module Mog
       blog =Blog.new(config)
       blog.name.should == the_configured_name
     end
+
   end
 end
