@@ -52,6 +52,11 @@ module Mog
         post = a_post_entitled('&t.h·3,/ "p¡0!s(t) -[/t$1%t&l3?')
         post.url.should == 'th3-p0st-t1tl3'
       end
+
+      it 'removes underscores "_"' do
+        post = a_post_entitled('a_ title_ with_ underscores_')
+        post.url.should == 'a-title-with-underscores'
+      end
     end
   end
 end

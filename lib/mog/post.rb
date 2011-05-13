@@ -10,7 +10,7 @@ module Mog
 
     def url
       url_chunks = title.split.map do |chunk|
-        chunk.gsub(/\W/, '')
+        chunk.gsub(/\W|_/, '')
       end
       url_chunks.join('-')
     end
