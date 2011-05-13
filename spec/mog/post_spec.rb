@@ -1,7 +1,12 @@
 require 'spec_helper'
 
+def a_post_entitled(title)
+  Mog::Post.new(title, 'description', 'content')
+end
+
 module Mog
-  describe Post do
+
+    describe Post do
     describe '#new' do
       let(:the_title){ 'the post title' }
       let(:the_description){ 'the post description' }
@@ -21,6 +26,24 @@ module Mog
 
       it 'is created with a content' do
         @post.content.should == the_content
+      end
+    end
+
+    describe '#url' do
+      it 'returns the post title' do
+        the_title = 'title'
+        post = a_post_entitled(the_title)
+        post.url.should == the_title
+      end
+
+      it 'repaces the spaces in the title with "-"' do
+        post = a_post_entitled('a title with spaces')
+        post.url.should == 'a-title-with-spaces'
+      end
+
+      it 'replaces tabs in the title with "-"' do
+        post = a_post_entitled('a title with tabs')
+        post.url.should == 'a-title-with-tabs'
       end
     end
   end

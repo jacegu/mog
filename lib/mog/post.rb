@@ -7,5 +7,9 @@ module Mog
       @description = description
       @content = content
     end
+
+    def url
+      title.split.join('-')
+    end
   end
 end
