@@ -7,8 +7,7 @@ def a_post_entitled(title)
 end
 
 module Mog
-
-    describe Post do
+  describe Post do
     describe '#new' do
       let(:the_title){ 'the post title' }
       let(:the_description){ 'the post description' }
