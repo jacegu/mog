@@ -16,6 +16,6 @@ Then /^the post description should be "([^"]*)"$/ do |description|
   @post.description.should == description
 end
 
-Then /^the post content should contain "([^"]*)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^the post content should contain "([^"]*)"$/ do |content|
+  @post.content.should =~ /#{content}/
 end
