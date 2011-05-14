@@ -17,5 +17,5 @@ Then /^the post description should be "([^"]*)"$/ do |description|
 end
 
 Then /^the post content should contain "([^"]*)"$/ do |content|
-  @post.content.should =~ /#{content}/
+  @post.content.should match(content)
 end
