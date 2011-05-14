@@ -1,4 +1,4 @@
-#The first line of the post content.lang: en
+#lang: en
 
 Feature: The post file format used by mog
 
