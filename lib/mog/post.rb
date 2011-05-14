@@ -3,6 +3,7 @@ module Mog
     attr_reader :title, :description, :content
 
     def self.from_post_file(file)
+      new(file.title, file.description, file.content)
     end
 
     def initialize(title, description, content)

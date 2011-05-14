@@ -30,6 +30,32 @@ module Mog
       end
     end
 
+    describe '::from_post_file' do
+      let(:the_file) { double(:post_file).as_null_object }
+
+      it 'creates a post from the file' do
+        Post.from_post_file(the_file).should be_a(Post)
+      end
+
+      it 'entitles the post with the title specified in the file' do
+        the_title = 'the title taken from the file'
+        the_file.should_receive(:title).and_return(the_title)
+        Post.from_post_file(the_file).title.should == the_title
+      end
+
+      it 'gives the post the description specified in the file' do
+        the_description = 'the description taken from the file'
+        the_file.should_receive(:description).and_return(the_description)
+        Post.from_post_file(the_file).description.should == the_description
+      end
+
+      it 'gives the post the content specified in the file' do
+        the_content = '<p>the post content taken from the file</p>'
+        the_file.should_receive(:content).and_return(the_content)
+        Post.from_post_file(the_file).content.should == the_content
+      end
+    end
+
     describe '#url' do
       it 'returns the post title' do
         the_title = 'title'
@@ -37,7 +63,7 @@ module Mog
         post.url.should == the_title
       end
 
-      it 'repaces the spaces in the title with "-"' do
+      it 'replaces the spaces in the title with "-"' do
         post = a_post_entitled('a title with spaces')
         post.url.should == 'a-title-with-spaces'
       end
