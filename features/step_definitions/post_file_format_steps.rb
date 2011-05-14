@@ -4,7 +4,8 @@ Given /^a post file with the content:$/ do |file_content|
 end
 
 When /^a post is created from that file$/ do
-  pending # express the regexp above with the code you wish you had
+  file_format = Mog::PostFileFormat.new
+  @post = Mog::Post.from_formatted_file(@file, file_format)
 end
 
 Then /^the post title should be "([^"]*)"$/ do |arg1|

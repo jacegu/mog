@@ -2,6 +2,9 @@ module Mog
   class Post
     attr_reader :title, :description, :content
 
+    def self.from_formatted_file(file, format)
+    end
+
     def initialize(title, description, content)
       @title = title
       @description = description
