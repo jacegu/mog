@@ -8,14 +8,14 @@ When /^a post is created from that file$/ do
   @post = Mog::Post.from_post_file(@post_file)
 end
 
-Then /^the post title should be "([^"]*)"$/ do |title|
-  @post.title.should == title
+Then /^the post title should be "([^"]*)"$/ do |expected_title|
+  @post.title.should == expected_title
 end
 
-Then /^the post description should be "([^"]*)"$/ do |description|
-  @post.description.should == description
+Then /^the post description should be "([^"]*)"$/ do |expected_description|
+  @post.description.should == expected_description
 end
 
-Then /^the post content should contain "([^"]*)"$/ do |content|
-  @post.content.should match(content)
+Then /^the post content should contain "([^"]*)"$/ do |expected_content|
+  @post.content.should match(expected_content)
 end
