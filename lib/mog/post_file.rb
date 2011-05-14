@@ -28,6 +28,5 @@ module Mog
       lines_without_trail_spaces = lines.map{ |line| line.lstrip }.compact
       lines_non_empty = lines_without_trail_spaces.select{ |l| not l.empty? }
     end
-
   end
 end

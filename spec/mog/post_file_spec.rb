@@ -1,6 +1,6 @@
 module Mog
   describe PostFile do
-    let(:the_file_content) { " \ntitle\n \ndescription\nfirst content line\nsecond content line" }
+    let(:the_file_content){ " \ntitle\n \ndescription\nfirst content line\nsecond content line" }
     let(:the_file_path){ 'path/to/the/file.post.html' }
 
     before(:each) do

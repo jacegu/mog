@@ -12,8 +12,8 @@ Then /^the post title should be "([^"]*)"$/ do |title|
   @post.title.should == title
 end
 
-Then /^the post description should be "([^"]*)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^the post description should be "([^"]*)"$/ do |description|
+  @post.description.should == description
 end
 
 Then /^the post content should contain "([^"]*)"$/ do |arg1|
