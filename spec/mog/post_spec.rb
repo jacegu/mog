@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 def a_post_entitled(title)
-  Mog::Post.new(title, 'description', 'content')
+  Mog::Post.new(title, 'description', 'content', DateTime.new)
 end
 
 module Mog
@@ -12,9 +12,10 @@ module Mog
       let(:the_title){ 'the post title' }
       let(:the_description){ 'the post description' }
       let(:the_content){ 'the post content' }
+      let(:the_publication_time){ DateTime.new }
 
       before do
-        @post = Post.new(the_title, the_description, the_content)
+        @post = Post.new(the_title, the_description, the_content, the_publication_time)
       end
 
       it 'is created with a title' do
@@ -27,6 +28,10 @@ module Mog
 
       it 'is created with a content' do
         @post.content.should == the_content
+      end
+
+      it 'is created with a publication time' do
+        @post.publication_time.should == the_publication_time
       end
     end
 

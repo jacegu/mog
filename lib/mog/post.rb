@@ -1,11 +1,12 @@
 module Mog
   class Post
-    attr_reader :title, :description, :content
+    attr_reader :title, :description, :content, :publication_time
 
-    def initialize(title, description, content)
+    def initialize(title, description, content, publication_time)
       @title = title
       @description = description
       @content = content
+      @publication_time = publication_time
     end
 
     def url
