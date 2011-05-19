@@ -2,7 +2,7 @@ require 'date'
 
 class DateTime
   def past?
-    self < now
+    self < DateTime.now
   end
 end
 

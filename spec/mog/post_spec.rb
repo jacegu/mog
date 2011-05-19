@@ -69,6 +69,7 @@ module Mog
     describe '#published?' do
       it 'is true if the publication time is past' do
         post = a_post_published_on('2011-01-01 10:00:00+00:00')
+        post.should be_published
       end
 
       xit 'is true if the publication time is present'
