@@ -1,3 +1,11 @@
+require 'date'
+
+class DateTime
+  def past?
+    self < now
+  end
+end
+
 module Mog
   class Post
     attr_reader :title, :description, :content, :publication_time
@@ -13,6 +21,10 @@ module Mog
       url = title.downcase
       url_chunks = url.split.map{ |chunk| chunk.gsub(/\W|_/, '') }
       url_chunks.join('-')
+    end
+
+    def published?
+      @publication_time.past?
     end
   end
 end

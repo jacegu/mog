@@ -6,6 +6,10 @@ def a_post_entitled(title)
   Mog::Post.new(title, 'description', 'content', DateTime.new)
 end
 
+def a_post_published_on(publication_time)
+  Mog::Post.new('title', 'description', 'content', DateTime.parse(publication_time))
+end
+
 module Mog
   describe Post do
     describe '#new' do
@@ -60,6 +64,15 @@ module Mog
         post = a_post_entitled('a_ title_ with_ underscores_')
         post.url.should == 'a-title-with-underscores'
       end
+    end
+
+    describe '#published?' do
+      it 'is true if the publication time is past' do
+        post = a_post_published_on('2011-01-01 10:00:00+00:00')
+      end
+
+      xit 'is true if the publication time is present'
+      xit 'is false if the publication time is future'
     end
   end
 end
