@@ -1,20 +1,17 @@
 module Mog
   class Configuration
+    def initialize
+      @options = {}
+    end
+
     def set(option_name, option_value)
-      define_instace_variable(option_name, option_value)
-      define_attr_reader_for(option_name)
+      @options[option_name] = option_value
     end
 
-    def define_instace_variable(name, value)
-      eval "@#{name} = value"
+    def method_missing(name, *args, &block)
+      return @options[name] if @options.has_key?(name)
+      super
     end
 
-    def define_attr_reader_for(option)
-      Configuration.class_eval do
-        define_method :"#{option}" do
-          eval "@#{option}"
-        end
-      end
-    end
   end
 end
