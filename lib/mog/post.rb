@@ -2,10 +2,6 @@ module Mog
   class Post
     attr_reader :title, :description, :content
 
-    def self.from_post_file(file)
-      new(file.title, file.description, file.content)
-    end
-
     def initialize(title, description, content)
       @title = title
       @description = description
@@ -13,7 +9,8 @@ module Mog
     end
 
     def url
-      url_chunks = title.downcase.split.map{ |chunk| chunk.gsub(/\W|_/, '') }
+      url = title.downcase
+      url_chunks = url.split.map{ |chunk| chunk.gsub(/\W|_/, '') }
       url_chunks.join('-')
     end
   end
