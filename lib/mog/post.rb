@@ -13,7 +13,7 @@ module Mog
     end
 
     def url
-      url_chunks = title.split.map{ |chunk| chunk.gsub(/\W|_/, '') }
+      url_chunks = title.downcase.split.map{ |chunk| chunk.gsub(/\W|_/, '') }
       url_chunks.join('-')
     end
   end
