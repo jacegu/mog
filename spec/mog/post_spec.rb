@@ -79,12 +79,21 @@ module Mog
     end
 
     describe 'two posts' do
-      context 'when they have the same title, description, content and publication time' do
+      context 'with the same title, description, content and publication time' do
         it 'are equal' do
           a_post       = Post.new('t', 'd', 'c', DateTime.parse('2011-01-01 10:00:00+00:00'))
           another_post = Post.new('t', 'd', 'c', DateTime.parse('2011-01-01 10:00:00+00:00'))
           a_post.should == another_post
           another_post.should == a_post
+        end
+      end
+
+      context 'with different titles' do
+        it 'are different' do
+          a_post       = a_post_entitled('a')
+          another_post = a_post_entitled('b')
+          a_post.should_not == another_post
+          another_post.should_not == a_post
         end
       end
     end
