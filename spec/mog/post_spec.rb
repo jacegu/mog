@@ -72,8 +72,10 @@ module Mog
         post.should be_published
       end
 
-      xit 'is true if the publication time is present'
-      xit 'is false if the publication time is future'
+      it 'is false otherwise' do
+        post = a_post_published_on('99999-12-31 23:59:59+00:00')
+        post.should_not be_published
+      end
     end
   end
 end
