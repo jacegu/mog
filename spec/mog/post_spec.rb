@@ -6,6 +6,10 @@ def a_post_entitled(title)
   Mog::Post.new(title, 'description', 'content', DateTime.new)
 end
 
+def a_post_described_as(description)
+  Mog::Post.new('title', description, 'content', DateTime.new)
+end
+
 def a_post_published_on(publication_time)
   Mog::Post.new('title', 'description', 'content', DateTime.parse(publication_time))
 end
@@ -96,6 +100,16 @@ module Mog
           another_post.should_not == a_post
         end
       end
+
+      context 'with different descriptions' do
+        it 'are different' do
+          a_post       = a_post_described_as('a')
+          another_post = a_post_described_as('b')
+          a_post.should_not == another_post
+          another_post.should_not == a_post
+        end
+      end
+
     end
   end
 end

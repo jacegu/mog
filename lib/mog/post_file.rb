@@ -7,8 +7,8 @@ module Mog
     THIRD_LINE = 2
     LAST_LINE = -1
 
-    def initialize(path)
-      File.open(path, 'r'){ |f| @source_file_content = f.read }
+    def initialize(file)
+      @source_file_content = file.read
     end
 
     def title
