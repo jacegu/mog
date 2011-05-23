@@ -24,14 +24,14 @@ module Mog
     end
 
     def published?
-      @publication_time.past?
+      publication_time.past?
     end
 
     def ==(other)
-      @title == other.title and
-        @description == other.description and
-        @content == other.content and
-        @publication_time == other.publication_time
+      title == other.title and
+        description == other.description and
+        content == other.content and
+        publication_time == other.publication_time
     end
   end
 end

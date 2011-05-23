@@ -7,6 +7,10 @@ When /^a post is created from that file$/ do
   File.open(@file_path, 'r+'){ |f| @post = Mog::PostFile.new(f) }
 end
 
+Then /^the post should be published on "([^"]*)"$/ do |expected_publication_time|
+  @post.publication_time.should == DateTime.parse(expected_publication_time)
+end
+
 Then /^the post title should be "([^"]*)"$/ do |expected_title|
   @post.title.should == expected_title
 end

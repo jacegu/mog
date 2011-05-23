@@ -3,9 +3,8 @@ module Mog
     let(:publication_time){ DateTime.parse('2011-01-01 12:00:00+00:00') }
     let(:the_file_content){ %{ #{publication_time}\n
                                title\n
-                               \ndescription\n
-                               first content line\n
-                               second content line} }
+                               \n description\n
+                               first content line\nsecond content line} }
 
     let(:the_file_path){ 'path/to/the/file.post.html' }
 
@@ -45,9 +44,10 @@ module Mog
       end
     end
 
-    xit 'is equal to a post with the same title, description, content and publication time' do
-      the_post = Post.new('title', 'description', "content line\nsecond content line")
-      @post_file.should be_equal(the_post)
+    it 'is equal to a post with the same title, description, content and publication time' do
+      the_post = Post.new('title', 'description', "first content line\nsecond content line", publication_time)
+      @post_file.should == the_post
+      the_post.should == @post_file
     end
   end
 end

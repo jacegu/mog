@@ -131,7 +131,7 @@ module Mog
           another_post.should_not == a_post
         end
       end
- 
     end
+
   end
 end

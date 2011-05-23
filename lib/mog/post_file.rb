@@ -1,5 +1,5 @@
 module Mog
-  class PostFile
+  class PostFile < Post
     attr_reader :source_file_content
 
     FIRST_LINE  = 0
