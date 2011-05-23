@@ -16,7 +16,7 @@ module Mog
     end
 
     def title
-      content_lines[FIRST_LINE]
+      content_lines[SECOND_LINE]
     end
 
     def description

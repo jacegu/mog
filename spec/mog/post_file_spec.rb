@@ -28,7 +28,7 @@ module Mog
     end
 
     describe '#title' do
-      xit 'returns the second line with text of the file content' do
+      it 'returns the second line with text of the file content' do
         @post_file.title.should == 'title'
       end
     end
