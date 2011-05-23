@@ -1,11 +1,10 @@
 Given /^a post file with the content:$/ do |file_content|
-  file_path = File.join(Dir.tmpdir, 'cucumber_post.post.html')
-  file = File.open(file_path, 'w+'){ |f| f.puts(file_content) }
-  @post_file = Mog::PostFile.new(file_path)
+  @file_path = File.join(Dir.tmpdir, 'cucumber_post.post.html')
+  File.open(@file_path, 'w+'){ |f| f.puts(file_content) }
 end
 
 When /^a post is created from that file$/ do
-  @post = Mog::Post.from_post_file(@post_file)
+  File.open(@file_path, 'r+'){ |f| @post = Mog::PostFile.new(f) }
 end
 
 Then /^the post title should be "([^"]*)"$/ do |expected_title|

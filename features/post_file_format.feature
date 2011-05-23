@@ -44,7 +44,3 @@ Feature: The post file format used by mog
      And the post description should be "The post description."
      And the post content should contain "The first line of the post content."
      And the post content should contain "The second line of the post content."
-
-
-
-
