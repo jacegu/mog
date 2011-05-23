@@ -11,6 +11,10 @@ module Mog
       @source_file_content = file.read
     end
 
+    def publication_time
+      DateTime.parse(content_lines[FIRST_LINE])
+    end
+
     def title
       content_lines[FIRST_LINE]
     end
