@@ -40,7 +40,7 @@ module Mog
     end
 
     describe '#content' do
-      xit 'returns every line from the fourth to the last' do
+      it 'returns every line from the fourth to the last' do
         @post_file.content.should == "first content line\nsecond content line"
       end
     end

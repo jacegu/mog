@@ -2,10 +2,11 @@ module Mog
   class PostFile
     attr_reader :source_file_content
 
-    FIRST_LINE = 0
+    FIRST_LINE  = 0
     SECOND_LINE = 1
-    THIRD_LINE = 2
-    LAST_LINE = -1
+    THIRD_LINE  = 2
+    FOURTH_LINE = 3
+    LAST_LINE   = -1
 
     def initialize(file)
       @source_file_content = file.read
@@ -24,7 +25,7 @@ module Mog
     end
 
     def content
-      content_lines[THIRD_LINE..LAST_LINE].join("\n")
+      content_lines[FOURTH_LINE..LAST_LINE].join("\n")
     end
 
     def content_lines
