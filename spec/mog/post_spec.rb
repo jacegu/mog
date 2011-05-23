@@ -122,6 +122,16 @@ module Mog
           another_post.should_not == a_post
         end
       end
+
+      context 'with different publication time' do
+        it 'are different' do
+          a_post       = a_post_published_on('2011-01-01')
+          another_post = a_post_published_on('1999-12-12')
+          a_post.should_not == another_post
+          another_post.should_not == a_post
+        end
+      end
+ 
     end
   end
 end
