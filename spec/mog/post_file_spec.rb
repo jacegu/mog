@@ -34,7 +34,7 @@ module Mog
     end
 
     describe '#description' do
-      xit 'returns the third line with text of the file content' do
+      it 'returns the third line with text of the file content' do
         @post_file.description.should == 'description'
       end
     end

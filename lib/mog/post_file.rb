@@ -20,7 +20,7 @@ module Mog
     end
 
     def description
-      content_lines[SECOND_LINE]
+      content_lines[THIRD_LINE]
     end
 
     def content
