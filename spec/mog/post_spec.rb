@@ -87,49 +87,39 @@ module Mog
     end
 
     describe 'two posts' do
-      context 'with the same title, description, content and publication time' do
-        it 'are equal' do
-          a_post       = Post.new('t', 'd', 'c', DateTime.parse('2011-01-01 10:00:00+00:00'))
-          another_post = Post.new('t', 'd', 'c', DateTime.parse('2011-01-01 10:00:00+00:00'))
-          a_post.should == another_post
-          another_post.should == a_post
-        end
+      it 'are equal with the same title, description, content and publication time' do
+        a_post       = Post.new('t', 'd', 'c', DateTime.parse('2011-01-01 10:00:00+00:00'))
+        another_post = Post.new('t', 'd', 'c', DateTime.parse('2011-01-01 10:00:00+00:00'))
+        a_post.should == another_post
+        another_post.should == a_post
       end
 
-      context 'with different titles' do
-        it 'are different' do
-          a_post       = a_post_entitled('a')
-          another_post = a_post_entitled('b')
-          a_post.should_not == another_post
-          another_post.should_not == a_post
-        end
+      it 'are different with different titles' do
+        a_post       = a_post_entitled('a')
+        another_post = a_post_entitled('b')
+        a_post.should_not == another_post
+        another_post.should_not == a_post
       end
 
-      context 'with different descriptions' do
-        it 'are different' do
-          a_post       = a_post_described_as('a')
-          another_post = a_post_described_as('b')
-          a_post.should_not == another_post
-          another_post.should_not == a_post
-        end
+      it 'are different with different descriptions' do
+        a_post       = a_post_described_as('a')
+        another_post = a_post_described_as('b')
+        a_post.should_not == another_post
+        another_post.should_not == a_post
       end
 
-      context 'with different content' do
-        it 'are different' do
-          a_post       = a_post_with_content('a')
-          another_post = a_post_with_content('b')
-          a_post.should_not == another_post
-          another_post.should_not == a_post
-        end
+      it 'are different with different content' do
+        a_post       = a_post_with_content('a')
+        another_post = a_post_with_content('b')
+        a_post.should_not == another_post
+        another_post.should_not == a_post
       end
 
-      context 'with different publication time' do
-        it 'are different' do
-          a_post       = a_post_published_on('2011-01-01')
-          another_post = a_post_published_on('1999-12-12')
-          a_post.should_not == another_post
-          another_post.should_not == a_post
-        end
+      it 'are different with different publication time' do
+        a_post       = a_post_published_on('2011-01-01')
+        another_post = a_post_published_on('1999-12-12')
+        a_post.should_not == another_post
+        another_post.should_not == a_post
       end
     end
 
