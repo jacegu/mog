@@ -51,13 +51,24 @@ module Mog
     end
 
     describe '::from' do
-      context 'with an empty file' do
+      let(:the_file){ double(:file) }
+
+      context 'if the file is empty' do
         it 'returns a NullPost' do
-          the_file = double(:file)
-          the_file.should_receive(:read).and_return('')
+          the_file.stub(:read).and_return('')
           PostFile.from(the_file).class.should ==  NullPost
         end
       end
+
+      context 'if the file was a post' do
+        it 'creates and returns a post file' do
+          the_file.stub(:read).and_return(the_file_content)
+          the_created_post_file = PostFile.new(the_file)
+          PostFile.should_receive(:new).with(the_file).and_return(the_created_post_file)
+          PostFile.from(the_file).should == the_created_post_file
+        end
+      end
     end
+
   end
 end
