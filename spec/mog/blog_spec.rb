@@ -16,5 +16,15 @@ module Mog
       blog.name.should == the_configured_name
     end
 
+    describe '#posts' do
+      it 'returns the posts at every configured location' do
+        post = double :post
+        post_dir = stub :post_dir
+        post_dir.should_receive(:posts).and_return([post])
+        config = stub :config
+        config.should_receive(:locations).and_return([post_dir])
+        Blog.new(config).posts.should == [post]
+      end
+    end
   end
 end

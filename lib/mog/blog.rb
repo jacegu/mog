@@ -7,21 +7,26 @@ module Mog
       define_readers_for_each_config_option
     end
 
-    private
-
-    def define_readers_for_each_config_option
-      @config.instance_variables.each do |var|
-        option = var.to_s.sub('@', '')
-        define_reader_for(option)
-      end
+    def posts
+      @config.locations.map do |location|
+        location.posts
+      end.flatten
     end
 
-    def define_reader_for(option)
-      Blog.class_eval do
-        define_method(option) do
-          eval "@config.#{option}"
+    private
+      def define_readers_for_each_config_option
+        @config.instance_variables.each do |var|
+          option = var.to_s.sub('@', '')
+          define_reader_for(option)
         end
       end
-    end
+
+      def define_reader_for(option)
+        Blog.class_eval do
+          define_method(option) do
+            eval "@config.#{option}"
+          end
+        end
+      end
   end
 end
