@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 module Mog
   describe PostFile do
     let(:publication_time){ DateTime.parse('2011-01-01 12:00:00+00:00') }
@@ -5,8 +7,6 @@ module Mog
                                title\n
                                \n description\n
                                first content line\nsecond content line} }
-
-    let(:the_file_path){ 'path/to/the/file.post.html' }
 
     before(:each) do
       the_file = double(:file)
@@ -48,6 +48,16 @@ module Mog
       the_post = Post.new('title', 'description', "first content line\nsecond content line", publication_time)
       @post_file.should == the_post
       the_post.should == @post_file
+    end
+
+    describe '::from' do
+      context 'with an empty file' do
+        it 'returns a NullPost' do
+          the_file = double(:file)
+          the_file.should_receive(:read).and_return('')
+          PostFile.from(the_file).class.should ==  NullPost
+        end
+      end
     end
   end
 end
