@@ -6,7 +6,7 @@ Feature: The post file format used by mog
   It doesn't require more markup than the markup you want to use. The posts
   will be written in a very natural way.
 
-  You only have to take care of the HTML mark up you want to use and respect
+  You only have to take care of the HTML markup you want to use and respect
   a simple rule: write things in order.
 
   It is really, really simple. The only thing you need to know is that the
@@ -46,3 +46,16 @@ Feature: The post file format used by mog
      And the post description should be "The post description."
      And the post content should contain "The first line of the post content."
      And the post content should contain "The second line of the post content."
+
+  Scenario: An empty post
+    Given a post file with the content:
+      """
+      """
+    When a post is created from that file
+    Then the post should not be published
+
+  @pending
+  Scenario: A post with missing parts
+
+  @pending
+  Scenario: A post with a malformed publication time

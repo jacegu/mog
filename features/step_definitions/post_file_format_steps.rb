@@ -4,7 +4,7 @@ Given /^a post file with the content:$/ do |file_content|
 end
 
 When /^a post is created from that file$/ do
-  File.open(@file_path, 'r+'){ |f| @post = Mog::PostFile.new(f) }
+  File.open(@file_path, 'r+'){ |f| @post = Mog::PostFile.from(f) }
 end
 
 Then /^the post should be published on "([^"]*)"$/ do |expected_publication_time|
@@ -22,3 +22,8 @@ end
 Then /^the post content should contain "([^"]*)"$/ do |expected_content|
   @post.content.should match(expected_content)
 end
+
+Then /^the post should not be published$/ do
+  @post.published?.should be_false
+end
+
