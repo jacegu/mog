@@ -26,3 +26,7 @@ end
 Then /^the blog takes its posts from the configured locations$/ do
   @blog.posts_locations.should == [@location]
 end
+
+Then /^I should be able to access that option as a blog method$/ do
+  expect{ @blog.the_option_name_i_just_made_up }.not_to raise_error
+end

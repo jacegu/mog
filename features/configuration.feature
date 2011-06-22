@@ -8,9 +8,16 @@ Feature: Engine and blog configuration
      When I ask the configuration for the option
      Then I get the cofigured value
 
-  Scenario: Accessing configuration options from the blog
+  Scenario: Configuring locations
 
-  Scenario: Configuring post locations
+  Scenario: Accessing configuration options from the blog
+    Given I configure a new option with its value
+     When I create a blog with that configuration
+     Then I should be able to access that option as a blog method
+
+  Scenario: Accessing blog configuration options from the blog
+
+  Scenario: Accessing the post locations from the blog
     Given I have configured some locations
      When I create a blog with that configuration
      Then the blog takes its posts from the configured locations

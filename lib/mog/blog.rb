@@ -12,9 +12,14 @@ module Mog
       end.flatten
     end
 
+    def posts_locations
+      @config.posts_locations
+    end
+
     private
       def method_missing(name, *args, &block)
-        @config.send(name)
+        return @config.configured_value_for(name) if @config.configured?(name)
+        super
       end
 
   end
