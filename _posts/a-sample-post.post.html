@@ -1,0 +1,28 @@
+2011-05-08 10:00
+
+
+The mog post file format
+
+
+In this post I will tell you how the posts files should be written in mog. You will see how simple it is!
+
+
+<p>The file format mog uses is really, really simple. You only have to use markup wherever you want to, which usually will be in the post content.</p>
+
+<p>The only thing you need to know is that the file will be splitted into three parts:</p>
+
+<h2>The title</h2>
+<p>The first line with text in the file will be taken as the post title. For example this post is entitled <em>The mog post file format</em>. The post can't be splitted in more than one line for obvious reasons.</p>
+
+<p>You shouldn't use markup in the title. It should be plain old text.</p>
+
+<h2>The description</h2>
+<p>The second line with text will be taken as the post description. In the particular case of this post file it will be <em>In this post I will tell you how the posts files should be written in mog. You will see how simple it is!</em>
+</p>
+
+<p>You shouldn't use markup in the description. Write it in plain text.</p>
+
+<h3>The content</h3>
+<p>The rest of the file will be considered the post content. You can use whatever markup language you want in it. Every markup language supported by Sinatra is supported by mog. You can even use plain HTML.</p>
+
+<p>The only thing you have to take care of is ensuring that the file extension matches the markup you are using. For example: if you are using HAML the file extension should be <em>file-name.post.haml</em></p>
