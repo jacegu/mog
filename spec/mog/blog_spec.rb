@@ -22,7 +22,7 @@ module Mog
         post_dir = stub :post_dir
         post_dir.should_receive(:posts).and_return([post])
         config = stub :config
-        config.should_receive(:locations).and_return([post_dir])
+        config.should_receive(:posts_locations).and_return([post_dir])
         Blog.new(config).posts.should == [post]
       end
     end

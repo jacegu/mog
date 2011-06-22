@@ -10,7 +10,7 @@ end
 
 When /^I configure the blog with that directory$/ do
   config = Mog::Configuration.new
-  config.set(:locations, [dir(TEMPORAL_DIR)])
+  config.add_posts_location(dir(TEMPORAL_DIR))
   @blog = Mog::Blog.new(config)
 end
 

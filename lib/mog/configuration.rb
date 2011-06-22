@@ -1,19 +1,34 @@
 module Mog
   class Configuration
-
-    DEFAULT_OPTIONS = {blog_name:'', blog_description:'', view_markup: :haml }
+    attr_reader :posts_locations
 
     def initialize
-      @options = DEFAULT_OPTIONS
+      @options = {}
+      @posts_locations = []
     end
 
-    def set(option_name, option_value)
-      @options[option_name] = option_value
+    def configured_options
+      @options.keys
     end
 
-    def method_missing(name, *args, &block)
-      return @options[name] if @options.has_key?(name)
-      super
+    def set(option, value)
+      @options[option] = value
     end
+
+    def configured_value_for(option)
+      raise UnknownOption unless configured?(option)
+      @options[option]
+    end
+
+    def configured?(option)
+      @options.has_key?(option)
+    end
+
+    def add_posts_location(location)
+      @posts_locations << location
+    end
+  end
+
+  class UnknownOption < Exception
   end
 end
