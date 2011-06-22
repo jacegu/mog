@@ -15,6 +15,6 @@ When /^I configure the blog with that directory$/ do
   @blog = Mog::Blog.new(config)
 end
 
-Then /^the blog should appear in the blog$/ do
+Then /^the post should appear in the blog$/ do
   @blog.posts.should include(@post)
 end
