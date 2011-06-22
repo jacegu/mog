@@ -16,9 +16,8 @@ Given /^there is a file that is not a post in the directory$/ do
 end
 
 When /^I configure the blog with that directory$/ do
-  post_directory = Mog::PostDir.at(TEMPORAL_DIR)
   config = Mog::Configuration.new
-  config.set(:locations, [post_directory])
+  config.set(:locations, [dir(TEMPORAL_DIR)])
   @blog = Mog::Blog.new(config)
 end
 
