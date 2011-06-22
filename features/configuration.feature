@@ -9,6 +9,9 @@ Feature: Engine and blog configuration
      Then I get the cofigured value
 
   Scenario: Configuring locations
+    Given I have configured some locations
+     When I ask the configuration for posts locations
+     Then I get the configured locations
 
   Scenario: Accessing configuration options from the blog
     Given I configure a new option with its value
@@ -24,5 +27,3 @@ Feature: Engine and blog configuration
     Given I have configured some locations
      When I create a blog with that configuration
      Then the blog takes its posts from the configured locations
-
-

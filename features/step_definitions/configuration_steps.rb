@@ -26,6 +26,10 @@ When /^I create a blog with that configuration$/ do
   @blog = Mog::Blog.new(@configuration)
 end
 
+When /^I ask the configuration for posts locations$/ do
+  @locations = @configuration.posts_locations
+end
+
 Then /^I get the cofigured value$/ do
   @configured_value.should == @value
 end
@@ -40,4 +44,7 @@ end
 
 Then /^I should be able to access that option as a blog method named "([^"]*)"$/ do |method_name|
   @blog.send(method_name).should == @value
+end
+Then /^I get the configured locations$/ do
+  @locations.should == [@location]
 end
