@@ -18,7 +18,11 @@ module Mog
 
     private
       def method_missing(name, *args, &block)
-        return @config.configured_value_for(name) if @config.configured?(name)
+        if @config.configured?(name)
+          return @config.configured_value_for(name)
+        else
+          return send "blog_#{name}" unless name.to_s.start_with?('blog_')
+        end
         super
       end
 

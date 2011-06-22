@@ -16,6 +16,9 @@ Feature: Engine and blog configuration
      Then I should be able to access that option as a blog method
 
   Scenario: Accessing blog configuration options from the blog
+    Given I configure an option with the name "blog_name" and the value "mog"
+     When I create a blog with that configuration
+     Then I should be able to access that option as a blog method named "name"
 
   Scenario: Accessing the post locations from the blog
     Given I have configured some locations

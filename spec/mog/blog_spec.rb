@@ -13,17 +13,31 @@ module Mog
     end
 
     describe 'access configuration options as methods' do
+
       context 'if the option has been configured' do
-        it 'returns the configured value' do
-          the_configured_name = 'the option'
-          config.stub(:configured?).with(:option).and_return(true)
-          config.stub(:configured_value_for).with(:option).and_return(the_configured_name)
-          @blog.option.should == the_configured_name
+        context 'if the option is not a blog option' do
+          it 'returns the configured value' do
+            the_configured_name = 'the option'
+            config.stub(:configured?).with(:option).and_return(true)
+            config.stub(:configured_value_for).with(:option).and_return(the_configured_name)
+            @blog.option.should == the_configured_name
+          end
+        end
+
+        context 'if the option is a blog option (starts with "blog_")' do
+          it 'returns the configured value even without "blog_" prefix' do
+            the_configured_name = 'mog'
+            config.stub(:configured?).with(:name).and_return(false)
+            config.stub(:configured?).with(:blog_name).and_return(true)
+            config.stub(:configured_value_for).with(:blog_name).and_return(the_configured_name)
+            @blog.name.should == the_configured_name
+          end
         end
       end
 
       context 'if the option does not exits' do
         it 'raises a NoMethodError' do
+          config.stub(:configured?).with(:blog_unknown_option).and_return(false)
           config.stub(:configured?).with(:unknown_option).and_return(false)
           expect{ @blog.unknown_option }.to raise_error NoMethodError
         end
