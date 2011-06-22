@@ -9,9 +9,12 @@ module Mog
       yield config
     end
 
-    get '/' do
+    before do
       @blog = Blog.new(@@config)
-      "#{@blog.name} by #{@blog.author}"
+    end
+
+    get '/' do
+      erb :index
     end
   end
 end
