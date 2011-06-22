@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title><%= @blog.name %></title>
+    <meta keyword="description" description="<%= @blog.description %>">
+  </head>
+  <body>
+    <ul id="posts">
+    <% @blog.posts.each do |post| %>
+      <li class="post">
+        <h1><%= post.title %></h1>
+        <%= post.content %>
+      </li>
+    <% end %>
+    </ul>
+  </body>
+</html>
