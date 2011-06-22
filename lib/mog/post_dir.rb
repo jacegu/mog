@@ -29,3 +29,9 @@ module Mog
     end
   end
 end
+
+class Object
+  def dir(path)
+    Mog::PostDir.at(path)
+  end
+end

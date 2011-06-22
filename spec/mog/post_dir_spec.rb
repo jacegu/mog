@@ -94,3 +94,15 @@ module Mog
 
   end
 end
+
+describe 'post dir creation helper' do
+  it 'can be called from Object scope' do
+    Object.instance_methods.should include(:dir)
+  end
+
+  it 'sends at message to PostDir with given path' do
+    path = '/path/to/the/directory'
+    Mog::PostDir.should_receive(:at).with(path)
+    dir(path)
+  end
+end
