@@ -1,6 +1,7 @@
 Given /^a post file with the content:$/ do |file_content|
-  @file_path = File.join(Dir.tmpdir, 'cucumber_post.post.html')
-  File.open(@file_path, 'w+'){ |f| f.puts(file_content) }
+  file_name = 'cucumber_post.post.html'
+  @file_path = File.join(TEMPORAL_DIR, file_name)
+  create_file_at_temporal_dir file_name, file_content
 end
 
 When /^a post is created from that file$/ do
