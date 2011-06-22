@@ -20,9 +20,12 @@ module Mog
       @dir.entries.map{ |e| File.join(path, e) }
     end
 
+    def post_file_entries
+     entries.select{ |e| File.file?(e) }.grep(/.*\/.+\.post\.(html|haml)$/i)
+    end
+
     def posts
-      file_entries = entries.select{ |e| File.file?(e) }
-      file_entries.map{ |e| PostFile.from(File.open(e)) }
+      post_file_entries.map{ |e| PostFile.from(File.open(e)) }
     end
   end
 end
