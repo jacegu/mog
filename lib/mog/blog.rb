@@ -6,10 +6,16 @@ module Mog
       @config = configuration
     end
 
+    def published_posts
+      posts.select{ |p| p.published? }.sort
+    end
+
+    def each_published_post
+      published_posts.each { |p| yield p }
+    end
+
     def posts
-      @config.posts_locations.map do |location|
-        location.posts
-      end.flatten
+      @config.posts_locations.map{ |l| l.posts }.flatten
     end
 
     def posts_locations

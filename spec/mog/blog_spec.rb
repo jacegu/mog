@@ -13,7 +13,6 @@ module Mog
     end
 
     describe 'access configuration options as methods' do
-
       context 'if the option has been configured' do
         context 'if the option is not a blog option' do
           it 'returns the configured value' do
@@ -52,14 +51,46 @@ module Mog
       end
     end
 
-    describe '#posts' do
-      it 'returns the posts at every configured location' do
-        post = double :post
-        post_dir = stub :post_dir
-        post_dir.should_receive(:posts).and_return([post])
-        config.should_receive(:posts_locations).and_return([post_dir])
-        @blog.posts.should == [post]
+    context 'working with posts' do
+      let(:published1) { double(:post, published?: true) }
+      let(:published2) { double(:post, published?: true) }
+      let(:unpublished){ double(:post, published?: false) }
+      let(:location){ stub(:location, posts:[unpublished, published2, published1]) }
+
+      before do
+        published1.stub(:<=>).with(published2).and_return(1)
+        published2.stub(:<=>).with(published1).and_return(-1)
+        config.stub(:posts_locations).and_return([location])
+      end
+
+      describe '#posts' do
+        it 'returns the posts at every configured location' do
+          @blog.posts.should include(published1, published2, unpublished)
+        end
+      end
+
+      describe '#published_posts' do
+        it 'returns every published post' do
+          @blog.published_posts.should include(published1, published2)
+        end
+
+        it 'does not return posts that have not been published yet' do
+          @blog.published_posts.should_not include(unpublished)
+        end
+
+        it 'orders the posts by publication time' do
+          @blog.published_posts.should == [published2, published1]
+        end
+      end
+
+      describe '#each_published_post' do
+        it 'yields every published post' do
+          yielded_posts = []
+          @blog.each_published_post{ |p| yielded_posts << p }
+          yielded_posts.should include(published1, published2)
+        end
       end
     end
+
   end
 end
