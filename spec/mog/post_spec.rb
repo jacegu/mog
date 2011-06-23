@@ -123,6 +123,13 @@ module Mog
       end
     end
 
+    describe '#<=>' do
+      it 'compares posts based on their publication time (older is bigger)' do
+        first_post  = a_post_published_on('2011-01-01 00:00:00+00:00')
+        second_post = a_post_published_on('2011-01-01 00:00:01+00:00')
+        first_post.should be > second_post
+      end
+    end
   end
 
   describe NullPost do

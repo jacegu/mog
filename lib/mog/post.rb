@@ -8,6 +8,7 @@ end
 
 module Mog
   class Post
+    include Comparable
     attr_reader :title, :description, :content, :publication_time
 
     def initialize(title, description, content, publication_time)
@@ -32,6 +33,10 @@ module Mog
         description == other.description and
         content == other.content and
         publication_time == other.publication_time
+    end
+
+    def <=>(other)
+      other.publication_time <=> publication_time
     end
   end
 
