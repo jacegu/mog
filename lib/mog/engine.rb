@@ -22,9 +22,16 @@ module Mog
     end
 
     get '/blog/:post_url' do
-      url = params[:post_url]
-      @post = @blog.published_post_with_url(url)
-      send @blog.view_markup, :post
+      @post = @blog.published_post_with_url params[:post_url]
+      if @post
+        send @blog.view_markup, :post
+      else
+        not_found
+      end
+    end
+
+    not_found do
+      '404'
     end
   end
 end
