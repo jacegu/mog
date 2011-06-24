@@ -22,6 +22,10 @@ module Mog
       @config.posts_locations
     end
 
+    def published_post_with_url(url)
+      published_posts.select{ |p| p.url == url }.first
+    end
+
     private
       def method_missing(name, *args, &block)
         if @config.configured?(name)

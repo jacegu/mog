@@ -61,6 +61,7 @@ module Mog
         published1.stub(:<=>).with(published2).and_return(1)
         published2.stub(:<=>).with(published1).and_return(-1)
         config.stub(:posts_locations).and_return([location])
+        config.stub(:configured?).and_return(false)
       end
 
       describe '#posts' do
@@ -90,6 +91,24 @@ module Mog
           yielded_posts.should include(published1, published2)
         end
       end
+
+      describe '#published_post_with_url url' do
+        context 'a post with the url exists and is published' do
+          it 'returns the post' do
+            the_url = 'the-post-title-urlified'
+            published1.stub(:url).and_return(the_url)  
+            published2.stub(:url).and_return('another-url')  
+            @blog.published_post_with_url(the_url).should be(published1)
+          end
+        end
+
+        context 'a post with the url exists but is not published' do
+        end
+
+        context 'no post with given url exists' do
+        end
+      end
+
     end
 
   end
