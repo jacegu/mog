@@ -18,7 +18,7 @@ module Mog
     end
 
     get '/blog' do
-      send @blog.view_markup, :index
+      send @blog.view_markup, :blog
     end
 
     get '/blog/:post_url' do
@@ -32,7 +32,7 @@ module Mog
 
     get '/blog/page/:page_number' do
       @page = params[:page_number].to_i
-      send @blog.view_markup, :index
+      send @blog.view_markup, :blog
     end
 
     not_found do
