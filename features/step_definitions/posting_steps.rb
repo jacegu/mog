@@ -1,5 +1,6 @@
 Given /^I have a published post in the post directory$/ do
   @post = Mog::Post.new('title', 'description', 'content', DateTime.parse('2011-05-08 10:00'))
+  remove_posts_from_temporal_dir
   create_file_at_temporal_dir 'cucumber_post.post.html',
     "#{@post.publication_time}\n#{@post.title}\n#{@post.description}\n#{@post.content}"
 end
