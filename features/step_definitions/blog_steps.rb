@@ -64,7 +64,6 @@ Then /^I should see the published post$/ do
 end
 
 Then /^I should see post ([^"]*)$/ do |post_number|
-  puts @published_posts
   page.should have_content @published_posts[post_number.to_i].title
   page.should have_content @published_posts[post_number.to_i].content
 end
