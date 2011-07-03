@@ -30,6 +30,11 @@ module Mog
       end
     end
 
+    get '/blog/page/:page_number' do
+      @page = params[:page_number].to_i
+      send @blog.view_markup, :index
+    end
+
     not_found do
       '404'
     end
