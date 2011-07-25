@@ -2,8 +2,6 @@ module Mog
   class Pages
     include Enumerable
 
-    DEFAULT_NUMBER_OF_POSTS_PER_PAGE = 5
-
     def self.for(blog)
       new(blog)
     end
@@ -12,16 +10,20 @@ module Mog
       @blog = blog
     end
 
-    def posts_per_page
-      @blog.posts_per_page
+    def each(&block)
+      pages.each(&block)
+    end
+
+    def number(page_number)
+      pages[page_number.pred]
     end
 
     def pages
       @blog.published_posts.each_slice(posts_per_page).map{ |s| Page.with_posts(*s) }
     end
 
-    def each(&block)
-      pages.each(&block)
+    def posts_per_page
+      @blog.posts_per_page
     end
   end
 

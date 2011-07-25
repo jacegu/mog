@@ -26,8 +26,13 @@ Feature: Blog navigation
      Then I should see post 1
       But I should not see post 2
 
-  @pending
+  @wip
   Scenario: Second page of posts
+    Given I have published 2 posts
+      And I have configured the blog to show 1 post per page
+     When I visit the page 2
+     Then I should see post 2
+      But I should not see post 1
 
   @pending
   Scenario: Blog pages without configuring posts per page

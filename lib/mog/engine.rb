@@ -24,6 +24,11 @@ module Mog
       send @blog.view_markup, :blog
     end
 
+    get '/blog/page/:page_number' do
+      @page = Pages.for(@blog).number(params[:page_number].to_i)
+      send @blog.view_markup, :blog
+    end
+
     get '/blog/:post_url' do
       @post = @blog.published_post_with_url params[:post_url]
       if @post

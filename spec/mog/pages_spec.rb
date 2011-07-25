@@ -46,6 +46,22 @@ module Mog
         end
       end
     end
+
+    describe '#number page_number' do
+      context 'if a page with the given number exists' do
+        it 'returns the page with given page number' do
+          the_first_page = double :page
+          the_blog = double :blog
+          pages = Pages.for(the_blog)
+          pages.should_receive(:pages).and_return([the_first_page])
+          pages.number(1).should be the_first_page
+        end
+      end
+
+      context 'if no page with that number exists' do
+        it 'returns a null page'
+      end
+    end
   end
 
   describe Page do
