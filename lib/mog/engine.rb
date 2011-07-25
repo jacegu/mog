@@ -1,6 +1,8 @@
 module Mog
   class Engine < Sinatra::Application
 
+    set :show_exceptions, false
+
     def self.config
       @@config ||= Configuration.new
     end
@@ -18,6 +20,7 @@ module Mog
     end
 
     get '/blog' do
+      @page = Pages.for(@blog).first
       send @blog.view_markup, :blog
     end
 
@@ -30,13 +33,12 @@ module Mog
       end
     end
 
-    get '/blog/page/:page_number' do
-      @page = params[:page_number].to_i
-      send @blog.view_markup, :blog
-    end
-
     not_found do
       '404'
+    end
+
+    error do
+      'Sorry there was a nasty error - ' + env['sinatra.error'].message
     end
   end
 end

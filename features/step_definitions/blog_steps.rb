@@ -21,8 +21,8 @@ Given /^some post locations have been added$/ do
   Mog::Engine.configure{ |c| c.add_posts_location dir(TEMPORAL_DIR) }
 end
 
-Given /^I have configured the blog to show ([^"]*) post per page/ do |page_count|
-  Mog::Engine.configure{ |c| c.set :blog_posts_per_page, page_count }
+Given /^I have configured the blog to show ([^"]*) post per page/ do |post_count|
+  Mog::Engine.configure{ |c| c.set :blog_posts_per_page, post_count.to_i }
 end
 
 Given /^I have published a post$/ do
@@ -38,7 +38,7 @@ Given /^I have published ([^"]*) posts$/ do |published_post_count|
 end
 
 Given /^I scheduled a post that has not been published yet$/ do
-  post_content = testing_post_published_on(DateTime.now + 10)
+  post_content = testing_post_published_on(DateTime.now.next_year)
   create_file_at_temporal_dir('post-1.post.html', post_content)
 end
 
@@ -66,6 +66,11 @@ end
 Then /^I should see post ([^"]*)$/ do |post_number|
   page.should have_content @published_posts[post_number.to_i].title
   page.should have_content @published_posts[post_number.to_i].content
+end
+
+Then /^I should not see post (\d+)$/ do |post_number|
+  page.should_not have_content @published_posts[post_number.to_i].title
+  page.should_not have_content @published_posts[post_number.to_i].content
 end
 
 Then /^I should get that page doesn't exist error$/ do

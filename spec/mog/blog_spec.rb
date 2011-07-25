@@ -79,7 +79,7 @@ module Mog
           @blog.published_posts.should_not include(unpublished)
         end
 
-        it 'orders the posts by publication time' do
+        it 'orders the posts by publication time (newest fist)' do
           @blog.published_posts.should == [published2, published1]
         end
       end
@@ -93,11 +93,11 @@ module Mog
       end
 
       describe '#published_post_with_url url' do
-        context 'a post with the url exists and is published' do
+        context 'if a post with the url exists and is published' do
           it 'returns the post' do
             the_url = 'the-post-title-urlified'
-            published1.stub(:url).and_return(the_url)  
-            published2.stub(:url).and_return('another-url')  
+            published1.stub(:url).and_return(the_url)
+            published2.stub(:url).and_return('another-url')
             @blog.published_post_with_url(the_url).should be(published1)
           end
         end
@@ -110,6 +110,5 @@ module Mog
       end
 
     end
-
   end
 end

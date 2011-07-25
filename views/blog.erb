@@ -5,7 +5,7 @@
   </head>
   <body>
     <ul id="posts">
-    <% @blog.each_published_post do |post| %>
+      <% @page.each_post do |post| %>
       <li class="post">
         <h1><%= post.title %></h1>
         <%= post.content %>

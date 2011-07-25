@@ -8,18 +8,26 @@ Feature: Blog navigation
 
   Scenario: Blog main page
     Given I have published a post
+      And I have configured the blog to show 1 post per page
      When I visit the blog's main page
      Then I should see the published post
 
-  Scenario: Blog's first page with one page of posts
+  Scenario: Blog's main page with one page of posts
     Given I have published 2 posts
       And I have configured the blog to show 2 post per page
-     When I visit the page 1
+     When I visit the blog's main page
      Then I should see post 1
       And I should see post 2
 
+  Scenario: Blog main page with more than a page of posts
+    Given I have published 2 posts
+      And I have configured the blog to show 1 post per page
+     When I visit the blog's main page
+     Then I should see post 1
+      But I should not see post 2
+
   @pending
-  Scenario: Blog first page with more than a page of posts
+  Scenario: Second page of posts
 
   @pending
   Scenario: Blog pages without configuring posts per page
